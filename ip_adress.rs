@@ -38,14 +38,21 @@ fn main(){
 
     let m1 = Message::Quit;
     let m2 = Message::Move{x: 12, y: 34};
-    let m3 = Message::Write(String::from("Im a Write Message"));
-    let m4 = Message::ChangeColor(214,235,124);
+    //let m3 = Message::Write(String::from("Im a Write Message"));
+    //let m4 = Message::ChangeColor(214,235,124);
 
 
-    m1.call();
-    m2.call();
-    m3.call();
-    m4.call();
+    match m2{
+	Message::Quit => std::process::exit(0),
+	other => other.call(),
+    }
+
+    let config_max = Some(3u8);
+
+    if let Some(max) = config_max {
+	println!("The maximum is configured is {max}")
+    }
+
 }
 
 
